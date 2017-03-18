@@ -1,0 +1,1 @@
+All downloaded songs are placed in this directory.
