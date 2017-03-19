@@ -1,72 +1,65 @@
-function hide()
-{
-	var cross			= document.getElementById('cross');
-	var checkmark 		= document.getElementById('checkmark');
-	var downloadForm 	= document.getElementsByClassName('download-form')[0];
+var url = null;
+var spinner = null;
 
-	checkmark.classList.add('hide');
-	cross.classList.add('hide');
-	downloadForm.classList.add('hide');
+var cross = document.getElementById('cross');
+var checkmark = document.getElementById('checkmark');
+var downloadForm = document.getElementById('download-form');
+
+var elements = [cross, checkmark, downloadForm];
+
+var opts = {
+    lines: 13
+    , length: 28
+    , width: 14
+    , radius: 42
+    , scale: 0.2
+    , corners: 1
+    , color: '#000'
+    , opacity: 0.25
+    , rotate: 0
+    , direction: 1 
+    , speed: 1 
+    , trail: 60 
+    , fps: 20
+    , zIndex: 2e9 
+    , className: 'spinner'
+    , top: '50%'
+    , left: '50%'
+    , shadow: false
+    , hwaccel: false
+    , position: 'absolute'
 }
 
-function send()
-{
-	var cross			= document.getElementById('cross');
-	var checkmark 		= document.getElementById('checkmark');
-	var downloadForm 	= document.getElementsByClassName('download-form')[0];
-	var url 			= document.getElementById('url').value;
+var target = document.getElementById('status');
 
-	checkmark.classList.add('hide');
-	downloadForm.classList.add('hide');
-	cross.classList.add('hide');
+function hide() {
+    for (var i = 0; i < elements.length; i++) {
+        if (!elements[i].classList.contains('hide')) {
+            elements[i].classList.add('hide');
+        }
+    }
+}
+
+function send() {
+	url	= document.getElementById('url').value;
+    spinner = new Spinner(opts).spin(target);
+
+    hide();
 
 	$.post( "/", { url: url })
-  		.done(function() {
-  			spinner.stop();
-			checkmark.classList.toggle('hide');
-			downloadForm.classList.toggle('hide');
-		})
-		.fail(function() {
-			spinner.stop();
-			cross.classList.toggle('hide');
-		});	
-  	
-
-    var opts = {
-		  lines: 13 // The number of lines to draw
-		, length: 28 // The length of each line
-		, width: 14 // The line thickness
-		, radius: 42 // The radius of the inner circle
-		, scale: 0.2 // Scales overall size of the spinner
-		, corners: 1 // Corner roundness (0..1)
-		, color: '#000' // #rgb or #rrggbb or array of colors
-		, opacity: 0.25 // Opacity of the lines
-		, rotate: 0 // The rotation offset
-		, direction: 1 // 1: clockwise, -1: counterclockwise
-		, speed: 1 // Rounds per second
-		, trail: 60 // Afterglow percentage
-		, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
-		, zIndex: 2e9 // The z-index (defaults to 2000000000)
-		, className: 'spinner' // The CSS class to assign to the spinner
-		, top: '50%' // Top position relative to parent
-		, left: '50%' // Left position relative to parent
-		, shadow: false // Whether to render a shadow
-		, hwaccel: false // Whether to use hardware acceleration
-		, position: 'absolute' // Element positioning
-	}
-
-	var target = document.getElementById('status');
-	var spinner = new Spinner(opts).spin(target);
+    .done(function() {
+  	    spinner.stop();
+	    checkmark.classList.remove('hide');
+		downloadForm.classList.remove('hide');
+	})
+	.fail(function() {
+		spinner.stop();
+		cross.classList.remove('hide');
+	});	
 }
 
-function download()
-{
-	var cross			= document.getElementById('cross');
-	var checkmark 		= document.getElementById('checkmark');
-	var downloadForm 	= document.getElementsByClassName('download-form')[0];
-
+function download() {
+    hide();
 	document.getElementById('url').value = '';
-	downloadForm.classList.add('hide');
-	checkmark.classList.add('hide');
 	window.location="?file=get";
 }

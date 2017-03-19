@@ -32,7 +32,7 @@ html, body {
 	box-shadow: 3px 3px 5px black;
 }
 
-.form .download-form input[type="submit"] {
+#download-form input[type="submit"] {
 	font-size: 18px;
 	margin-top: -10px;
 	border: none;

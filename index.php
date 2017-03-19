@@ -50,7 +50,7 @@
 		<img src="/assets/img/checkmark.png" alt="done processing" id="checkmark" class="hide">
 		<img src="/assets/img/cross.png" alt="failed processing" id="cross" class="hide">
 	</div>
-	<div class="download-form hide">
+	<div class="hide" id="download-form">
 		<input type="submit" value="Download" onclick="download()" download></div>
 	</div>
 </div>
