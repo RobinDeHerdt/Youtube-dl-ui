@@ -14,5 +14,5 @@ The site is meant to be hosted on a local server or VM, so anyone within your LA
 * If necessary, change permissions of the "downloads" directory.
 
 ## Screenshots
-![Download in progress](https://github.com/RobinDeHerdt/Youtube-mp3-download-interface/tree/master/assets/img/download-in-progress.png "Download in progress")
-![Finished downloading](https://github.com/RobinDeHerdt/Youtube-mp3-download-interface/tree/master/assets/img/download-done.png "Finished downloading")
+![Download in progress](https://raw.githubusercontent.com/RobinDeHerdt/Youtube-mp3-download-interface/master/assets/img/download-in-progress.png "Download in progress")
+![Finished downloading](https://raw.githubusercontent.com/RobinDeHerdt/Youtube-mp3-download-interface/master/assets/img/download-done.png "Finished downloading")
